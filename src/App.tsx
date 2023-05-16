@@ -13,14 +13,31 @@ function App() {
   useEffect(() => {
     const listener = (event: any) => {
       if (event.key === 'p' || event.key === 'P') {
-        setIsShaking((isShaking) => !isShaking)
+        setIsShaking((isShaking) => {
+          if (!isShaking) {
+            new window.Notification('Touch Event', {
+              body: 'Tremor Detected',
+            })
+          }
+          return !isShaking
+        })
       }
     }
+    window.Notification
 
     document.addEventListener('keydown', listener)
     return () => {
       document.removeEventListener('keydown', listener)
     }
+  }, [])
+
+  useEffect(() => {
+    // Request permission to display notifications
+    window.Notification.requestPermission().then((permission) => {
+      if (permission === 'granted') {
+        console.log('Permission Granted')
+      }
+    })
   }, [])
 
   useEffect(() => {
@@ -53,8 +70,25 @@ function App() {
     }
   }, [socket])
 
+  const handleTouch = () => {
+    if ('Notification' in window && window.Notification.permission === 'granted') {
+      setIsShaking((isShaking) => !isShaking)
+      // Create a notification
+      new window.Notification('Touch Event', {
+        body: 'Tremor Detected',
+      })
+    } else if ('Notification' in window && window.Notification.permission !== 'denied') {
+      // Request permission to display notifications
+      window.Notification.requestPermission().then((permission) => {
+        if (permission === 'granted') {
+          console.log('Permission Granted')
+        }
+      })
+    }
+  }
+
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} onTouchStart={handleTouch}>
       <h1>Tremor Detector</h1>
       {isShaking && <p>Tremor Detected</p>}
       <div className={styles.canvas_container}>
