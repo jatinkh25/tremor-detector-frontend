@@ -4,11 +4,10 @@ import styles from './App.module.scss'
 import Canvas from './components/canvas'
 
 function App() {
-  const [isLoading, setIsLoading] = useState(false)
   const [socket, setSocket] = useState<Socket | null>(null)
-  const [acclerometerData, setAcclerometerData] = useState([])
-  const [gyroData, setGyroData] = useState([])
-  const [magnetometerData, setMagnetometerData] = useState([])
+  // const [acclerometerData, setAcclerometerData] = useState([])
+  // const [gyroData, setGyroData] = useState([])
+  // const [magnetometerData, setMagnetometerData] = useState([])
   const [isShaking, setIsShaking] = useState(false)
 
   useEffect(() => {
@@ -25,7 +24,7 @@ function App() {
   }, [])
 
   useEffect(() => {
-    setIsLoading(true)
+    // setIsLoading(true)
     const s = io(import.meta.env.VITE_APP_SERVER_URL || 'http://localhost:3001')
     setSocket(s)
 
@@ -38,7 +37,7 @@ function App() {
   useEffect(() => {
     if (socket == null) return
 
-    const handleChange = (delta: string) => {
+    const handleChange = () => {
       // setAcclerometerData((data) => [
       //   ...data,
       //   { x: delta.split(',').slice(0, 2)[0], y: delta.split(',').slice(0, 2)[1] },

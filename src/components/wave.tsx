@@ -14,7 +14,7 @@ const Wave = ({ isShaking }: WaveProps) => {
 
   let frequency = status === 'play' ? 0.03 : 0
   const colors: { [key: string]: string } = generateColor()
-  let timer = 1
+  // let timer = 1
   const waveLength = isShaking ? [0.11, 0.02, 0.015] : [0, 0, 0]
   const waves = {
     frontWave: new WaveEntity(waveLength, 'rgba(255,179,0,0.88)'),
@@ -31,7 +31,7 @@ const Wave = ({ isShaking }: WaveProps) => {
     //   colors = generateColor()
     //   timer = 1
     // }
-    timer++
+    // timer++
     frequency += isShaking ? 0.15 : 0
     requestAnimationFrame(render)
   }
