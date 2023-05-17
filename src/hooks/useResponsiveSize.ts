@@ -6,7 +6,7 @@ const useResponsiveSize = () => {
 
   const setSizes = useCallback(() => {
     setWidth(window.innerWidth)
-    setHeight(window.innerHeight)
+    setHeight(700)
   }, [setWidth, setHeight])
 
   useEffect(() => {
