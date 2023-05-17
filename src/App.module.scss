@@ -28,7 +28,8 @@
       width: 95vw;
 
       canvas {
-        height: 80vw !important;
+        height: 75vw !important;
+        max-height: 500px;
       }
     }
   }

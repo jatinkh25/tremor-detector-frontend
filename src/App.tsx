@@ -23,7 +23,6 @@ function App() {
         })
       }
     }
-    window.Notification
 
     document.addEventListener('keydown', listener)
     return () => {
