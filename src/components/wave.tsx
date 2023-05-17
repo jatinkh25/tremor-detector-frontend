@@ -15,7 +15,8 @@ const Wave = ({ isShaking }: WaveProps) => {
   let frequency = isShaking ? 0.03 : 0
   const colors: { [key: string]: string } = generateColor()
   // let timer = 1
-  const waveLength = isShaking ? [0.11, 0.02, 0.015] : [0, 0, 0]
+  const waveLen = width < 525 ? [0.11, 0.02, 0.015] : [0.02, 0.02, 0.015]
+  const waveLength = isShaking ? waveLen : [0, 0, 0]
   const waves = {
     frontWave: new WaveEntity(waveLength, 'rgba(255,179,0,0.88)'),
     // backWave: new WaveEntity([body0.0122, 0.018, 0.005], 'rgba(255,179,0,0.48)'),
